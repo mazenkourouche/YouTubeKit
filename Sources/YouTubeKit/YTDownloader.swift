@@ -40,6 +40,10 @@ public struct YTDownloader {
             $0.quality == quality && $0.mimeType.subtype == fileFormat.rawValue
         })
     }
+
+    public func downloadURL(videoFormat: YTVideoFormat) async throws -> URL {
+        try downloader.downloadURL(videoFormat: videoFormat)
+    }
     
     public mutating func download(
         video: YTVideo,

@@ -62,6 +62,10 @@ struct YTDownloaderImpl {
             downloadTask.resume()
         }
     }
+
+    func downloadURL(videoFormat: YTVideoFormat) throws -> URL {
+        try unthrottle(videoURL: videoFormat.url)
+    }
     
     mutating func downloadFileChunked(from url: URL,
                              to outputURL: URL,
