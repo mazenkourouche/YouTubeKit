@@ -36,10 +36,10 @@ extension YTVideoFormat {
         /// A 144p video
         case tiny
 
-        init(from decoder: Decoder) throws {
+        public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             let value = try container.decode(String.self)
-            self = YTVideoFormatQuality(rawValue: value) ?? .hd720
+            self = YTVideoFormat.Quality(rawValue: value) ?? .hd720
         }
     }
     
