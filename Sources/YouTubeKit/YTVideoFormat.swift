@@ -41,6 +41,12 @@ extension YTVideoFormat {
         case medium = "AUDIO_QUALITY_MEDIUM"
         case low = "AUDIO_QUALITY_LOW"
     }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let value = try container.decode(String.self)
+        self = YTVideoFormat(rawValue: value) ?? .hd720
+    }
 }
 
 extension YTVideoFormat.Quality {
