@@ -35,6 +35,12 @@ extension YTVideoFormat {
         case small
         /// A 144p video
         case tiny
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let value = try container.decode(String.self)
+            self = YTVideoFormatQuality(rawValue: value) ?? .hd720
+        }
     }
     
     public enum AudioQuality: String, Equatable, Hashable, Decodable {
@@ -42,11 +48,7 @@ extension YTVideoFormat {
         case low = "AUDIO_QUALITY_LOW"
     }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let value = try container.decode(String.self)
-        self = YTVideoFormat(rawValue: value) ?? .hd720
-    }
+    
 }
 
 extension YTVideoFormat.Quality {
