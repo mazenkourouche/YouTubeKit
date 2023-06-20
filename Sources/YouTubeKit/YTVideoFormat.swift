@@ -41,6 +41,17 @@ extension YTVideoFormat {
             let value = try container.decode(String.self)
             self = YTVideoFormat.Quality(rawValue: value) ?? .hd720
         }
+
+        public var sizeOrder: Int {
+            switch self {
+                case .tiny: return 0
+                case .small: return 1
+                case .medium: return 2
+                case .large: return 3
+                case .hd720: return 4
+                case .hd1080: return 5
+            }
+        }
     }
     
     public enum AudioQuality: String, Equatable, Hashable, Decodable {
